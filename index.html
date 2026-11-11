@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#040918">
+  <title>NAVES — Asalto Estelar</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23040918'/%3E%3Cpath d='M16 4l4 12 8 8-8-2-4 6-4-6-8 2 8-8z' fill='%232fb4ff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="game"></canvas>
+  <div id="flash"></div>
+
+  <div id="hud" class="hidden">
+    <div class="hud-tl">
+      <div class="lbl">PUNTOS</div>
+      <div class="row"><span id="score">0000000</span><span id="mult"></span></div>
+    </div>
+    <div class="hud-tr">
+      <div class="btns">
+        <button class="ibtn muteBtn" title="Sonido (M)" aria-label="Sonido">♪</button>
+        <button class="ibtn" id="pauseBtn" title="Pausa (P)" aria-label="Pausa">❚❚</button>
+      </div>
+      <div id="sector">SECTOR 1</div>
+      <div id="hi" class="lbl">RÉCORD 0</div>
+    </div>
+    <div id="bossbar" class="hidden">
+      <div id="bossname">JEFE</div>
+      <div class="bar"><div id="bossfill"></div></div>
+    </div>
+    <div class="hud-bl">
+      <div class="line"><span class="lbl">NAVES</span><span id="lives">▲▲</span></div>
+      <div class="line"><span class="lbl">BLINDAJE</span><span id="hull" class="pips lg"></span></div>
+      <div class="line"><span class="lbl">ARMA</span><span id="weapon" class="pips"></span></div>
+    </div>
+    <button id="specialBtn" title="Especial (X)">
+      <span id="specialName">ESPECIAL</span>
+      <span id="specialCount">✦✦</span>
+      <span class="key">X</span>
+    </button>
+  </div>
+
+  <div id="banner"></div>
+  <div id="toast"></div>
+
+  <div id="menu" class="screen">
+    <button class="ibtn muteBtn corner" title="Sonido (M)" aria-label="Sonido">♪</button>
+    <header>
+      <h1>NAVES</h1>
+      <div class="tag">ASALTO ESTELAR</div>
+      <div id="menuHi"></div>
+    </header>
+    <div class="stage">
+      <button id="prevShip" class="arrow" aria-label="Nave anterior">‹</button>
+      <button id="nextShip" class="arrow" aria-label="Nave siguiente">›</button>
+    </div>
+    <div class="pickline">ELIGE TU NAVE</div>
+    <div id="cards"></div>
+    <button id="startBtn" class="big">DESPEGAR</button>
+    <div class="help">
+      <span><b>Mover</b> WASD · flechas · arrastrar</span>
+      <span><b>Especial</b> X</span>
+      <span><b>Pausa</b> P</span>
+      <span>Disparo automático</span>
+    </div>
+  </div>
+
+  <div id="pause" class="screen overlay hidden">
+    <div class="panel">
+      <h2>PAUSA</h2>
+      <button id="resumeBtn" class="big">CONTINUAR</button>
+      <button id="paMenuBtn" class="ghost">Salir al menú</button>
+    </div>
+  </div>
+
+  <div id="gameover" class="screen overlay hidden">
+    <div class="panel">
+      <h2 class="bad">NAVE DESTRUIDA</h2>
+      <div class="lbl">PUNTUACIÓN</div>
+      <div id="goScore" class="final">0</div>
+      <p id="goInfo"></p>
+      <button id="retryBtn" class="big">REINTENTAR</button>
+      <button id="goMenuBtn" class="ghost">Cambiar de nave</button>
+    </div>
+  </div>
+
+  <div id="victory" class="screen overlay hidden">
+    <div class="panel">
+      <h2 class="good">¡VICTORIA!</h2>
+      <p id="viInfo"></p>
+      <div class="lbl">PUNTUACIÓN</div>
+      <div id="viScore" class="final">0</div>
+      <button id="viNextBtn" class="big">SIGUIENTE CICLO</button>
+      <button id="viMenuBtn" class="ghost">Volver al menú</button>
+    </div>
+  </div>
+
+  <div id="nowebgl" class="screen overlay hidden">
+    <div class="panel"><h2>WebGL no disponible</h2><p>Tu navegador no puede mostrar gráficos 3D. Prueba con una versión reciente de Chrome, Firefox, Edge o Safari.</p></div>
+  </div>
+
+  <script src="vendor/three.min.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/models.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
